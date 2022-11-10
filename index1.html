@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table library</title>
+    <style>
+        form{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <form id="form_data">
+        <table >
+        <tr>
+            <td>
+                User : <input type="text" id="user" ><br><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Email : <input type="email" id="email" ><br><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                D.O.B : <input type="date" id="dob"  ><br><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Time : <input type="time" id="time" ><br><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Favoutite Color : <input type="text" id="color" ><br><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" id="btnAdd" value="Add to table">
+            </td>
+        </tr>
+        </table>
+    </form>
+    <div id="mytable"></div><br>
+    
+    <script src="datatable1.js"></script>
+
+    <script>
+    
+        var mytable = document.getElementById('mytable');
+      
+        (function(){
+            var data = [];
+
+            var form=document.getElementById("form_data");
+            if(form)
+                form.addEventListener('submit',make_table );
+
+            function make_table(event)
+            {
+                event.preventDefault();
+                var username=document.getElementById("user");
+                var email=document.getElementById("email");
+                var dob=document.getElementById("dob");
+                var time=document.getElementById("time");
+                var color=document.getElementById("color");
+
+                var obj={
+                    'Username' : username.value,
+                    'Email' : email.value,
+                    'DOB' : dob.value,
+                    'Time' : time.value,
+                    'Color' : color.value
+                };
+                data.push(obj);
+                //console.log(JSON.stringify(data));
+                getData(data,mytable);
+                GenerateTable(data);
+                //original_data(data);
+            }
+            
+           
+        })();
+    </script>
+</body>
+</html>
